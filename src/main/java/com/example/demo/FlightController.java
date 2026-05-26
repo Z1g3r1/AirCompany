@@ -17,8 +17,8 @@ public class FlightController {
         return flightRepository.save(flight);
     }
     @DeleteMapping("/flights/{id}")
-    public void deleteFlight (@RequestBody Flight flight) {
-        flightRepository.delete(flight);
+    public void deleteFlight (@PathVariable Long id) {
+        flightRepository.deleteById(id);
     }
     @PutMapping ("/flights/{id}")
     public void putFlight(@RequestBody Flight flight) {

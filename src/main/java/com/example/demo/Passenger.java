@@ -1,6 +1,9 @@
 package com.example.demo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 
 @Entity @Table (name = "passengers")
 public class Passenger {
@@ -10,10 +13,12 @@ public class Passenger {
     @ManyToOne @JoinColumn (name = "flight_id")
     private Flight flight;
     private boolean has_ticket;
+    @Min(0) @Max(150)
     private byte age;
-    private char gender;
+    @Pattern(regexp = "[MF]")
+    private String gender;
     public Passenger() {}
-    public Passenger(Long id, Flight flight, boolean has_ticket, byte age, char gender) {
+    public Passenger(Long id, Flight flight, boolean has_ticket, byte age, String gender) {
         this.id = id;
         this.flight = flight;
         this.has_ticket = has_ticket;
@@ -21,7 +26,7 @@ public class Passenger {
         this.gender = gender;
     }
 
-    public Passenger(Flight flight, boolean has_ticket, byte age, char gender) {
+    public Passenger(Flight flight, boolean has_ticket, byte age, String gender) {
         this.flight = flight;
         this.has_ticket = has_ticket;
         this.age = age;
@@ -44,7 +49,7 @@ public class Passenger {
         return age;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 }
