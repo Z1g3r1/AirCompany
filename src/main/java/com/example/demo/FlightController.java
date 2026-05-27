@@ -1,36 +1,35 @@
 package com.example.demo;
 
+import com.example.demo.service.FlightService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class FlightController {
-    FlightRepository flightRepository;
-    public FlightController(FlightRepository fR) {
-        this.flightRepository = fR;
+    FlightService flightService;
+    public FlightController(FlightService flightService) {
+        this.flightService = flightService;
     }
     @PostMapping("/flights")
     public Flight createFlight(@RequestBody Flight flight) {
-        return flightRepository.save(flight);
+        return flightService.createFlight(flight);
     }
     @DeleteMapping("/flights/{id}")
     public void deleteFlight (@PathVariable Long id) {
-        flightRepository.deleteById(id);
+        flightService.deleteFlight(id);
     }
     @PutMapping ("/flights/{id}")
     public void putFlight(@RequestBody Flight flight) {
-        flightRepository.saveAndFlush(flight);
+        flightService.putFlight(flight);
     }
     @GetMapping ("/flights/{id}")
     public Optional<Flight> getById(@PathVariable Long id) {
-        return flightRepository.findById(id);
+        return flightService.getById(id);
     }
     @GetMapping ("/flights")
     public List<Flight> getAllFlights() {
-        return flightRepository.findAll();
+        return flightService.getAllFlights();
     }
 
 }

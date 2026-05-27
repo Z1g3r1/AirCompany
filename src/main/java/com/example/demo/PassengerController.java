@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.service.PassengerService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,28 +22,28 @@ public class PassengerController {
         );
         return errors;
     }
-    PassengerRepository passengerRepository;
-    public PassengerController(PassengerRepository passengerRepository) {
-        this.passengerRepository = passengerRepository;
+    PassengerService passengerService;
+    public PassengerController(PassengerService passengerService) {
+        this.passengerService = passengerService;
     }
     @PostMapping ("/passengers")
     public Passenger createPassenger(@Valid @RequestBody Passenger passenger) {
-        return passengerRepository.save(passenger);
+        return passengerService.createPassenger(passenger);
     }
     @GetMapping ("/passengers")
     public List<Passenger> getAllPassengers() {
-        return passengerRepository.findAll();
+        return passengerService.getAllPassengers();
     }
     @GetMapping ("/passengers/{id}")
     public Optional<Passenger> getPassengerById(@PathVariable Long id) {
-        return passengerRepository.findById(id);
+        return passengerService.getPassengerById(id);
     }
     @DeleteMapping ("/passengers/{id}")
     public void deletePassenger(@PathVariable Long id) {
-        passengerRepository.deleteById(id);
+        passengerService.deletePassenger(id);
     }
     @PutMapping ("/passengers/{id}")
     public void putPassenger(@RequestBody Passenger passenger) {
-        passengerRepository.saveAndFlush(passenger);
+        passengerService.putPassenger(passenger);
     }
 }
