@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Рейсы</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Доступные рейсы</h1>
+<table border="1">
+    <tr>
+        <th>Номер рейса</th>
+        <th>Компания</th>
+    </tr>
+    <tr th:each="flight : ${flights}">
+        <td th:text="${flight.flightNumber}"></td>
+        <td th:text="${flight.companyName}"></td>
+    </tr>
+</table>
+</body>
+</html>

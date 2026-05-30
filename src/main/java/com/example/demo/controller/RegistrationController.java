@@ -16,10 +16,12 @@ public class RegistrationController {
         this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    @PostMapping ("/register")
-    public void registration(@RequestBody AppUser user) {
+    @PostMapping("/register")
+    public String registration(@RequestBody AppUser user) {
         if (appUserRepository.findByUsername(user.getUsername()).isEmpty()) {
-            appUserRepository.save(new AppUser(user.getUsername(), passwordEncoder.encode(user.getPassword()), "ROLE_PASSENGER"));
+            appUserRepository.save(new AppUser(user.getUsername(),
+                    passwordEncoder.encode(user.getPassword()), "ROLE_PASSENGER"));
         }
+        return "redirect:/login?registered=true";
     }
 }

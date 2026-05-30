@@ -28,7 +28,6 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
-        http.csrf(csrf -> csrf.disable());
         return http.build();
     }
     @Bean
