@@ -12,9 +12,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class AppUserConfiguration {
+public class SecurityConfig {
     private final AppUserService appUserService;
-    public AppUserConfiguration(AppUserService appUserService) {
+    public SecurityConfig(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
     @Bean
@@ -22,11 +22,13 @@ public class AppUserConfiguration {
         http
                 .userDetailsService(appUserService)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/flights/**").permitAll()
                         .requestMatchers("/passengers/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
+        http.csrf(csrf -> csrf.disable());
         return http.build();
     }
     @Bean

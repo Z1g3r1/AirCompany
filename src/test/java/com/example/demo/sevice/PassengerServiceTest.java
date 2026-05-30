@@ -1,7 +1,7 @@
 package com.example.demo.sevice;
 
-import com.example.demo.Passenger;
-import com.example.demo.PassengerRepository;
+import com.example.demo.classes.Passenger;
+import com.example.demo.repository.PassengerRepository;
 import com.example.demo.service.PassengerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

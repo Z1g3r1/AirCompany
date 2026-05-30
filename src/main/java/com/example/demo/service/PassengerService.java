@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.Passenger;
-import com.example.demo.PassengerRepository;
+import com.example.demo.classes.Passenger;
+import com.example.demo.repository.PassengerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.classes.Flight;
+import com.example.demo.repository.FlightRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

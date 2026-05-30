@@ -1,8 +1,7 @@
 package com.example.demo.sevice;
 
-import com.example.demo.Flight;
-import com.example.demo.FlightController;
-import com.example.demo.FlightRepository;
+import com.example.demo.classes.Flight;
+import com.example.demo.repository.FlightRepository;
 import com.example.demo.service.FlightService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

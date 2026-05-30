@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.classes.Passenger;
 import com.example.demo.service.PassengerService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

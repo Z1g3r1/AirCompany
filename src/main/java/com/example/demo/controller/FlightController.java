@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.classes.Flight;
 import com.example.demo.service.FlightService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
