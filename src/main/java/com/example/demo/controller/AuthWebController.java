@@ -10,4 +10,8 @@ public class AuthWebController {
     public String showRegistrationForm() {
         return "register";
     }
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
+    }
 }

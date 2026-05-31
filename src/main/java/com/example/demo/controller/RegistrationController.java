@@ -4,11 +4,11 @@ import com.example.demo.classes.AppUser;
 import com.example.demo.repository.AppUserRepository;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RestController
+@Controller
 public class RegistrationController {
     AppUserRepository appUserRepository;
     PasswordEncoder passwordEncoder;
@@ -17,11 +17,12 @@ public class RegistrationController {
         this.passwordEncoder = passwordEncoder;
     }
     @PostMapping("/register")
-    public String registration(@RequestBody AppUser user) {
+    public String registration(@RequestParam String username, @RequestParam String password) {
+        AppUser user = new AppUser(username, passwordEncoder.encode(password), "ROLE_PASSENGER");
         if (appUserRepository.findByUsername(user.getUsername()).isEmpty()) {
-            appUserRepository.save(new AppUser(user.getUsername(),
-                    passwordEncoder.encode(user.getPassword()), "ROLE_PASSENGER"));
+            appUserRepository.save(user);
+            return "redirect:/login?registered=true";
         }
-        return "redirect:/login?registered=true";
+        return "redirect:/register?error=userexists";
     }
 }

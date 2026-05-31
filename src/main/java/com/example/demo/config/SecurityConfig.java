@@ -27,7 +27,8 @@ public class SecurityConfig {
                         .requestMatchers("/passengers/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(login -> login.loginPage("/login").defaultSuccessUrl("/flights/page", true).loginProcessingUrl("/login").permitAll());
         return http.build();
     }
     @Bean
